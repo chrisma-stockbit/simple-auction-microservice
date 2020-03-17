@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "grpc";
+package bidder_service;
+
+service BidderService{
+    rpc RegisterBidder(BidderRegistrationRequest) returns (BidderRegistrationResponse) {}
+}
+
+message BidderRegistrationRequest {
+    string full_name = 2;
+    string bank_account_number = 3;
+    string bank_name = 4;
+    string phone_number = 5;
+}
+
+message BidderRegistrationResponse {
+    BidderRegistrationRequest data = 1;
+    string guid = 2;
+}
