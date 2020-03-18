@@ -5,7 +5,9 @@ import (
 
 	httpadapter "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/api/adapter/http"
 	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/api/endpoint"
+	mysqlrepo "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/domain/repo/mysql"
 	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/domain/service"
+	mysqldb "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/mysql"
 	httptransport "github.com/go-kit/kit/transport/http"
 )
 
@@ -23,6 +25,9 @@ func HttpRoutes() []HttpRoute {
 
 func bidderRegistrationRoute() HttpRoute {
 	service := new(service.BidderRegistrationService)
+	bidderRepo := &mysqlrepo.BidderRepository{}
+	bidderRepo.Conn = mysqldb.GetDbConnection
+	service.BidderRepo = bidderRepo
 	handler := httptransport.NewServer(
 		endpoint.BidderRegistrationEndpoint(service),
 		httpadapter.DecodeRegisterBidderRequest,

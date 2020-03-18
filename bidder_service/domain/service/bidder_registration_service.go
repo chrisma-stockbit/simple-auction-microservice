@@ -2,12 +2,18 @@ package service
 
 import (
 	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/domain/entity"
+	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/domain/repo/mysql"
 )
 
-type BidderRegistrationService struct{}
+type BidderRegistrationService struct {
+	BidderRepo *mysql.BidderRepository
+}
 
-func (b *BidderRegistrationService) RegisterBidder(bidder entity.Bidder) (entity.Bidder, error) {
-	//TODO insert to mysql db
-	bidder.Guid = "1234567"
+func (b *BidderRegistrationService) RegisterBidder(bidder *entity.Bidder) (*entity.Bidder, error) {
+	bidder.IsActive = true
+	bidder, err := b.BidderRepo.Save(bidder)
+	if err != nil {
+		return nil, err
+	}
 	return bidder, nil
 }

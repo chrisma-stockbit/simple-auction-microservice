@@ -15,16 +15,19 @@ import (
 func BidderRegistrationEndpoint(s *service.BidderRegistrationService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(dtorequest.BidderRegistrationRequest)
-		bidder := entity.Bidder{}
-		copier.Copy(&bidder, &req)
+		bidder := &entity.Bidder{}
+		copier.Copy(bidder, &req)
 
 		bidder, err = s.RegisterBidder(bidder)
 		if err != nil {
 			log.Fatalf("register bidder failed: %v", err)
 		}
 
-		resp := dtoresponse.BidderRegistrationResponse{}
-		copier.Copy(&resp, &bidder)
-		return resp, nil
+		resp := &dtoresponse.BidderRegistrationResponse{}
+		copier.Copy(resp, bidder)
+		if bidder.Balance.Valid {
+			resp.Balance = bidder.Balance.Int64
+		}
+		return *resp, nil
 	}
 }
