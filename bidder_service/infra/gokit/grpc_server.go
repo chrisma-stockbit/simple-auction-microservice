@@ -21,7 +21,7 @@ func NewGrpcServer() pb.BidderServiceServer {
 
 	return &grpcServer{
 		registerBidderGrpcHandler: grpctransport.NewServer(
-			domendpoint.BidderRegistrationEndpoint(bidderRegistrationService),
+			domendpoint.BidderRegistrationEndpoint(&bidderRegistrationService),
 			encdec.DecodeGrpcRegisterBidderRequest,
 			encdec.EncodeGrpcBitterRegistrationResponse,
 		),
