@@ -14,6 +14,9 @@ Auction Service with three endpoints:
 - request to join multiple auctions (client side streaming RPC)
 - bid on auction item (bidirectional streaming RPC)
 
+### Server
+The server will run on localhost on port 10000.
+
 ### Data Model
 <pre>
 Bidder{
