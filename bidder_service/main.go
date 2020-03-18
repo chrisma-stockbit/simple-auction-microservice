@@ -11,13 +11,21 @@ import (
 )
 
 func main() {
-	ln, err := net.Listen("tcp", fmt.Sprintf(":%d", 10000))
+	grpcServer := grpc.NewServer()
+	bidderServiceServerImpl := gokit.NewGrpcServer()
+	grpcPort := 10000
+	setupGrpcServer(grpcServer, bidderServiceServerImpl, grpcPort)
+
+}
+
+func runGrpcServer(grpcServer *grpc.Server, bidderServiceServerImpl pb.BidderServiceServer, port int) {
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatalf("failed to run grpc server: %v", err)
 	}
-	grpcServer := grpc.NewServer()
+
 	//We pass proto method - gokit endpoint integrator as the grpc server implementation
-	pb.RegisterBidderServiceServer(grpcServer, gokit.NewGrpcServer())
-	log.Println("serving grpc server..")
+	pb.RegisterBidderServiceServer(grpcServer, bidderServiceServerImpl)
+	log.Printf("serving grpc server on port %d..", port)
 	grpcServer.Serve(ln)
 }
