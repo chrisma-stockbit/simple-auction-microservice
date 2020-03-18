@@ -3,8 +3,8 @@ package gokit
 import (
 	"context"
 
+	encdec "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/api/adapter/grpc"
 	domendpoint "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/api/endpoint"
-	encdec "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/api/grpc"
 	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/domain/service"
 	pb "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/grpc"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
