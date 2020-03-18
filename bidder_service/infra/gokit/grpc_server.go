@@ -10,6 +10,8 @@ import (
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 )
 
+//grpcServer is the implementation of proto interface.
+//Each grpctransport.Handler will integrate proto method with gokit endpoint.
 type grpcServer struct {
 	registerBidderGrpcHandler grpctransport.Handler
 }

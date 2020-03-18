@@ -16,6 +16,7 @@ func main() {
 		log.Fatalf("failed to run grpc server: %v", err)
 	}
 	grpcServer := grpc.NewServer()
+	//We pass proto method - gokit endpoint integrator as the grpc server implementation
 	pb.RegisterBidderServiceServer(grpcServer, gokit.NewGrpcServer())
 	log.Println("serving grpc server..")
 	grpcServer.Serve(ln)
