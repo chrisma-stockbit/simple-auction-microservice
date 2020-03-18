@@ -6,6 +6,6 @@ import (
 	"net/http"
 )
 
-func encodeBitterRegistrationResponse(_ context.Context, w http.ResponseWriter, domainResp interface{}) error {
+func EncodeBitterRegistrationResponse(_ context.Context, w http.ResponseWriter, domainResp interface{}) error {
 	return json.NewEncoder(w).Encode(domainResp)
 }
