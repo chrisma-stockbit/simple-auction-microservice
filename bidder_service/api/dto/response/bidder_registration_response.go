@@ -6,5 +6,5 @@ import (
 
 type BidderRegistrationResponse struct {
 	request.BidderRegistrationRequest
-	Guid string
+	Guid string `json:"guid"`
 }
