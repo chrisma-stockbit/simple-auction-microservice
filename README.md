@@ -4,11 +4,12 @@ I am using this repo to create simple auction microservices in purpose to help m
 
 There will be two microservices, Bidder service and Auction service.\
 Bidder service with three endpoints:
-- register a bidder (simple RPC)
-- top up balance of a bidder (simple RPC)
-- get list of successful biddings of a bidder (server side streaming RPC)
+- register a bidder (HTTP POST) -> call Auction Service (register an eligible bidder to join auction)
+- top up balance of a bidder (HTTP PUT)
+- get list of successful biddings of a bidder (HTTP GET)
 
 Auction Service with three endpoints:
+- register an eligible bidder to join auction (simple RPC)
 - get list of running auctions (server side streaming RPC)
 - initiate auction of an item (simple RPC)
 - request to join multiple auctions (client side streaming RPC)
@@ -26,6 +27,7 @@ Bidder{
   bank_name string
   phone_number string
   balance uint
+  is_active boolean
 }
 
 Item{
