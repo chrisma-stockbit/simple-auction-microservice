@@ -8,11 +8,11 @@ import (
 
 type BidderRepository struct {
 	repo.BidderRepository
-	Conn func() (*gorm.DB, error)
+	OpenConn func() (*gorm.DB, error)
 }
 
-func (r *BidderRepository) Save(b *entity.Bidder) (*entity.Bidder, error) {
-	db, err := r.Conn()
+func (r BidderRepository) Save(b *entity.Bidder) (*entity.Bidder, error) {
+	db, err := r.OpenConn()
 	if err != nil {
 		return nil, err
 	}

@@ -1,4 +1,4 @@
-package gokit
+package grpc
 
 import (
 	"context"

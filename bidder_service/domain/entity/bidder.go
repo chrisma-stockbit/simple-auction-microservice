@@ -20,6 +20,10 @@ type Bidder struct {
 	IsActive      bool
 }
 
+func NewActiveBidder() *Bidder {
+	return &Bidder{IsActive: true}
+}
+
 func (b *Bidder) BeforeCreate(scope *gorm.Scope) error {
 	uid := uuid.NewV4().String()
 	return scope.SetColumn("Guid", uid)

@@ -5,5 +5,5 @@ import (
 )
 
 type BidderRepository interface {
-	Save(entity.Bidder) (entity.Bidder, error)
+	Save(*entity.Bidder) (*entity.Bidder, error)
 }
