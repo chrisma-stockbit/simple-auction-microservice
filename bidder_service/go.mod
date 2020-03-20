@@ -10,6 +10,7 @@ require (
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a
 	github.com/jinzhu/gorm v1.9.12
 	github.com/satori/go.uuid v1.2.0
+	github.com/stretchr/testify v1.5.1
 	golang.org/x/net v0.0.0-20200301022130-244492dfa37a // indirect
 	golang.org/x/sys v0.0.0-20200316230553-a7d97aace0b0 // indirect
 	google.golang.org/genproto v0.0.0-20200316142031-303a05041dad // indirect

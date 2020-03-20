@@ -10,6 +10,7 @@ import (
 	httptransport "github.com/go-kit/kit/transport/http"
 )
 
+//Controller maps a combination of URL path and HTTP method to a gokit HTTP handler.
 type Controller struct {
 	Routes []httpRoute
 }
