@@ -10,8 +10,8 @@ import (
 )
 
 type Server struct {
-	port int
-	r    *mux.Router
+	port   int
+	Router *mux.Router
 }
 
 func NewServer(c *httpadapter.Controller, port int) *Server {
@@ -21,12 +21,12 @@ func NewServer(c *httpadapter.Controller, port int) *Server {
 }
 
 func (s *Server) registerRoutes(c *httpadapter.Controller) {
-	s.r = mux.NewRouter()
+	s.Router = mux.NewRouter()
 	for _, route := range c.Routes {
-		s.r.PathPrefix("/api" + route.Path).Handler(route.Handler).Methods(route.Method)
+		s.Router.PathPrefix("/api" + route.Path).Handler(route.Handler).Methods(route.Method)
 	}
 }
 
 func (s *Server) Run() error {
-	return http.ListenAndServe(fmt.Sprintf(":%d", s.port), s.r)
+	return http.ListenAndServe(fmt.Sprintf(":%d", s.port), s.Router)
 }

@@ -2,7 +2,7 @@ package main
 
 import (
 	httpcontroller "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/adapter/http/controller"
-	http "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/gokit/http"
+	http "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/http"
 	"github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/mysql"
 	// pb "github.com/chrisma-stockbit/simple-auction-microservice/bidder-service/infra/grpc"
 	// "google.golang.org/grpc"
